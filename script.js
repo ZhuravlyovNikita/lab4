@@ -9,8 +9,8 @@ const config = {
 }
 
 const snake = {
-	x: 0,
-	y: 0,
+	x: 160,
+	y: 160,
 	dx: config.sizeCell,
 	dy: 0,
 	tails: [],
@@ -27,9 +27,14 @@ let canvas = document.querySelector("#snakegame");
 let context = canvas.getContext("2d");
 scoreBlock = document.querySelector(".score .score-count");
 drawScore();
+var check = false
 
 function gameLoop() {
 
+    if(score == 5 && check == false){
+        alert("Вы выйграли!");
+        check = true;
+    }
 	requestAnimationFrame( gameLoop );
 	if ( ++config.step < config.maxStep) {
 		return;
@@ -104,6 +109,7 @@ function refreshGame() {
 	snake.maxTails = 3;
 	snake.dx = config.sizeCell;
 	snake.dy = 0;
+    check = false;
 
 	randomPositionBerry();
 }
